@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "azure_function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7207",
+      "environmentVariables": {
+        "AZURE_TABLE_CONNECTION_STRING": ""
+      }
+    }
+  }
+}

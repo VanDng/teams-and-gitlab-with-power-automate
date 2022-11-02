@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Gitlab-Connector",
+    "description": "",
+    "version": "1.0"
+  },
+  "host": "gitlab.contoso.com.au",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/api/v4/projects/{PROJECT_ID}/merge_requests/{MERGE_REQUEST_IID}/approval_state": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Get merge request approval state",
+        "operationId": "get-merge-request-approval-state",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "PROJECT_ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MERGE_REQUEST_IID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/projects/{PROJECT_ID}/merge_requests/{MERGE_REQUEST_IID}/notes": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Get merge request comments",
+        "operationId": "get-merge-request-comments",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "PROJECT_ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MERGE_REQUEST_IID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    "/api/v4/projects/{PROJECT_ID}/merge_requests": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Get merge requests",
+        "operationId": "get-merge-requests",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "PROJECT_ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    "/api/v4/projects/{PROJECT_ID}/merge_requests/{MERGE_REQUEST_IID}": {
+      "put": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Edit merge request",
+        "operationId": "edit-merge-request",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "PROJECT_ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "MERGE_REQUEST_IID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ]
+      }
+    },
+    "/api/v4/projects": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Is Gateway Available",
+        "operationId": "is-gateway-available",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {},
+  "security": [],
+  "tags": []
+}
