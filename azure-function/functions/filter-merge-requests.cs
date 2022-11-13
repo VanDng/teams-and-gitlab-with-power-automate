@@ -6,12 +6,12 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using azure_function;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using azure_function.db;
 
-namespace gitlab
+namespace azure_function.functions
 {
     public static class filter_merge_request
     {
@@ -40,33 +40,33 @@ namespace gitlab
                 originalArray.Cast<JObject>()
                 .Select(s => s["iid"].Value<string>()).ToList();
 
-            IReadOnlyCollection<TrackingItem> trackingItems =
-                AzureTableClient.GetTrackingItems(projectId, iids);
-          
+            IReadOnlyCollection<MergeRequestTrackingItem> trackingItems =
+                AzureTableClient.GetMergeRequestTrackingItems(projectId, iids);
+
             foreach (JObject mergeRequest in originalArray.Cast<JObject>())
             {
                 string iid = mergeRequest["iid"].Value<int>().ToString();
                 //string updated_at = mergeRequest["updated_at"].Value<string>();
 
-                TrackingItem trackingItem = trackingItems.FirstOrDefault(item => item.RowKey == iid);
+                MergeRequestTrackingItem trackingItem = trackingItems.FirstOrDefault(item => item.RowKey == iid);
 
                 if (trackingItem is null)
                 {
-                    mergeRequest.Add($"{nameof(TrackingItem.adaptive_card_team_message_id)}", null);
+                    mergeRequest.Add($"{nameof(MergeRequestTrackingItem.adaptive_card_team_message_id)}", null);
 
                     newArray.Add(mergeRequest);
 
                     continue;
                 }
-                
+
                 //if (trackingItem.updated_at != updated_at)
                 //{
-                    mergeRequest.Add($"{nameof(TrackingItem.adaptive_card_team_message_id)}",
-                            trackingItem.adaptive_card_team_message_id is null
-                            ? null
-                            : JToken.FromObject(trackingItem.adaptive_card_team_message_id));
+                mergeRequest.Add($"{nameof(MergeRequestTrackingItem.adaptive_card_team_message_id)}",
+                        trackingItem.adaptive_card_team_message_id is null
+                        ? null
+                        : JToken.FromObject(trackingItem.adaptive_card_team_message_id));
 
-                    newArray.Add(mergeRequest);
+                newArray.Add(mergeRequest);
                 //}
             }
 

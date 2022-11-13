@@ -2,9 +2,9 @@
 using Azure.Data.Tables;
 using System;
 
-namespace azure_function
+namespace azure_function.db
 {
-    public class TrackingItem : ITableEntity
+    public class MergeRequestTrackingItem : ITableEntity
     {
         public string PartitionKey { get; set; }
         public DateTimeOffset? Timestamp { get; set; }
